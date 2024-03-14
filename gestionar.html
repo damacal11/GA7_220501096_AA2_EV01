@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Libros - Tecnilibros Cultural</title>
+    <link rel="stylesheet" href="estilos/styles.css">
+    <link rel="stylesheet" href="estilos/normalize.css">
+</head>
+<body>
+    <!-- Barra de tareas -->
+    <nav class="navbar">
+        <ul class="menu">
+            <li><img src="imagenes/logo.jpg" alt="Logo"></li>
+            <li><a class="boton" href="inicio.html">Inicio</a></li>
+            <li><a class="boton" href="gestionar.html">Gestión</a></li>
+            <li><a class="boton" href="notificaciones.html">Notificaciones</a></li>
+            <li><a class="boton" href="historial.html">Historial</a></li>
+            <li><a class="boton" href="proveedores.html">Proveedores</a></li>
+            <li><a class="boton" href="administrar.html">Administrar</a></li>
+            <li><a class="boton" href="index.php">Cerrar Sesión</a></li>
+        </ul>
+    </nav>
+
+    <div class="gestionary-page">
+        <div class="header custom-margin">
+            <h1>Gestión de Libros</h1>
+        </div>
+        <div class="icons-container">
+            <div class="icon-row">
+                <div class="icon-column">
+                    <a href="#" onclick="mostrarVentanaEmergente('formulario_libro.php')">
+                        <img src="imagenes/añadir.png" alt="Añadir libro" title="Añadir libro" class="icon-large centered">
+                    </a>
+                </div>
+                <div class="icon-column">
+                    <a href="#" onclick="mostrarVentanaEmergente('buscar_libro.php')">
+                        <img src="imagenes/buscar.png" alt="Buscar" title="Buscar libros" class="icon-large centered">
+                    </a>
+                </div>
+            </div>
+            <div class="icon-row">
+                <div class="icon-column">
+                    <a href="#" onclick="mostrarVentanaEmergente('buscar_libro.php')">
+                        <img src="imagenes/editar.png" alt="Editar" title="Editar libros" class="icon-large centered">
+                    </a>
+                </div>
+                <div class="icon-column">
+                    <a href="#" onclick="mostrarVentanaEmergente('buscar_libro.php')">
+                        <img src="imagenes/eliminar.png" alt="Eliminar" title="Eliminar libros" class="icon-large centered">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tu código JavaScript -->
+    <script>
+        function mostrarVentanaEmergente(url) {
+            window.open(url, '_blank', 'width=600,height=400,resizable=yes,scrollbars=yes');
+        }
+    </script>
+</body>
+</html>
+
+

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio - Tecnilibros Cultural</title>
+    <link rel="stylesheet" href="estilos/styles.css">
+    <link rel="stylesheet" href="estilos/normalize.css">
+</head>
+<body>
+    <!-- Barra de tareas -->
+    <nav class="navbar">
+        <ul class="menu">
+            <li><img src="imagenes/logo.jpg" alt="Logo"></li>
+            <li><a class="boton" href="inicio.html">Inicio</a></li>
+            <li><a class="boton" href="gestionar.html">Gestión</a></li>
+            <li><a class="boton" href="notificaciones.html">Notificaciones</a></li>
+            <li><a class="boton" href="historial.html">Historial</a></li>
+            <li><a class="boton" href="proveedores.html">Proveedores</a></li>
+            <li><a class="boton" href="administrar.html">Administrar</a></li>
+            <li><a class="boton" href="index.html">Cerrar Sesión</a></li>
+        </ul>
+    </nav>
+
+    <div class="gestionary-page">
+        <div class="search">
+            <!-- Formulario para buscar libros -->
+            <form action="buscar_libro.php" method="GET">
+                <input type="text" name="busqueda" placeholder="Buscar libro por título o autor">
+                <button type="submit">Buscar</button>
+            </form>
+        </div>
+
+        <table class="centered-table">
+            <tr>
+                <th>ID</th>
+                <th>TITULO</th>
+                <th>CATEGORIA</th>
+                <th>LIBRERO</th>
+                <th>EDICION</th>
+                <th>PRECIO</th>
+                <th>Acciones</th>
+            </tr>
+
+            <?php
+            // Establecer conexión a la base de datos
+            include("conexion_bd.php");
+
+            // Obtener el término de búsqueda del formulario
+            $busqueda = $_GET['busqueda'] ?? '';
+
+            // Consulta SQL para buscar libros por título o autor
+            $sql = "SELECT * FROM libros WHERE titulo LIKE '%$busqueda%' OR autor LIKE '%$busqueda%'";
+            $result = mysqli_query($conexion, $sql);
+
+            // Mostrar resultados en la tabla
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo "<tr>";
+                echo "<td>{$row['id']}</td>";
+                echo "<td>{$row['titulo']}</td>";
+                echo "<td>{$row['edicion']}</td>";
+                echo "<td>{$row['precio']}</td>";
+                echo "<td>";
+                echo "<a href='editar_libro.php?id={$row['id']}'><img src='imagenes/editar.png' alt='Editar' title='Editar libro'></a>";
+                echo "<a href='eliminar_libro.php?id={$row['id']}'><img src='imagenes/eliminar.png' alt='Eliminar' title='Eliminar libro'></a>";
+                echo "</td>";
+                echo "</tr>";
+            }
+
+            // Cerrar conexión a la base de datos
+            mysqli_close($conexion);
+            ?>
+        </table>
+    </div>
+</body>
+</html>
